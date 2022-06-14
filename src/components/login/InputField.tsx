@@ -1,4 +1,4 @@
-import { FormControl, Input, InputLabel } from "@mui/material";
+import { FormControl, TextField } from "@mui/material";
 import { Controller } from "react-hook-form";
 import { InputFieldProps } from "../../interfaces/props";
 
@@ -11,8 +11,13 @@ const InputField = (props: InputFieldProps) => {
       rules={{ required: true }}
       render={({ field }) => (
         <FormControl>
-          <InputLabel htmlFor={props.name}>{props.label}</InputLabel>
-          <Input type={props.type} id={props.name} {...field} />
+          <TextField
+            label={props.label}
+            type={props.type}
+            variant={"outlined"}
+            margin={"dense"}
+            {...field}
+          />
         </FormControl>
       )}
     />
