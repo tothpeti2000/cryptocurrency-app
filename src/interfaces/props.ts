@@ -8,3 +8,7 @@ export interface InputFieldProps {
   type: HTMLInputTypeAttribute;
   control: Control<UserCredentials>;
 }
+
+export interface CurrencyListItemProps {
+  currency: string;
+}
