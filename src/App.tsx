@@ -1,19 +1,17 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import CurrencyList from "./components/currencyList/CurrencyList";
-import DeleteFAB from "./components/fab/DeleteFAB";
-import Header from "./components/header/Header";
-import CurrenciesPage from "./pages/CurrenciesPage";
+import CurrenciesPage from "./pages/Dashboard";
 import LoginPage from "./pages/LoginPage";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
-    <DeleteFAB />
-    /*<Router>
+    <Router>
       <Routes>
         <Route path="/" element={<LoginPage />} />
-        <Route path="currencies" element={<CurrenciesPage />} />
+        <Route path="dashboard" element={<CurrenciesPage />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
-  </Router>*/
+    </Router>
   );
 }
 
