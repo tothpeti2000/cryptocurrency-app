@@ -12,14 +12,7 @@ const LoginForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Grid
-        container
-        direction="column"
-        width={"50%"}
-        padding={5}
-        borderRadius={5}
-        bgcolor={"grey.300"}
-      >
+      <Grid container direction="column">
         <InputField
           name="userName"
           control={control}
