@@ -12,3 +12,7 @@ export interface InputFieldProps {
 export interface CurrencyListItemProps {
   currency: string;
 }
+
+export interface HeaderProps {
+  userName: string;
+}
