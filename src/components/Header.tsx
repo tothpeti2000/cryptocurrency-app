@@ -1,5 +1,5 @@
 import { Typography } from "@mui/material";
-import { HeaderProps } from "../../interfaces/props";
+import { HeaderProps } from "../interfaces/props";
 
 const Header = (props: HeaderProps) => {
   return (
