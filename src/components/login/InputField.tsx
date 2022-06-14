@@ -8,6 +8,7 @@ const InputField = (props: InputFieldProps) => {
       name={props.name}
       control={props.control}
       defaultValue=""
+      rules={{ required: true }}
       render={({ field }) => (
         <FormControl>
           <InputLabel htmlFor={props.name}>{props.label}</InputLabel>
