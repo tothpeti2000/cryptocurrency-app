@@ -1,6 +1,6 @@
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import { Typography } from "@mui/material";
-import "../App.css";
+import "../index.css";
 
 const Title = () => {
   return (

@@ -5,12 +5,11 @@ import Title from "../components/Title";
 const LoginPage = () => {
   return (
     <Grid
-      className="bg-radial"
       container
-      direction={"column"}
       justifyContent={"center"}
       alignItems={"center"}
       height={"100vh"}
+      bgcolor={"#f0f2f5"}
     >
       <Box>
         <Title />
