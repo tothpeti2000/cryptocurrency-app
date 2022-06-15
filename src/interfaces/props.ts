@@ -1,5 +1,6 @@
 import { HTMLInputTypeAttribute } from "react";
 import { Control, Path } from "react-hook-form";
+import { Asset } from "./currency";
 import { UserCredentials } from "./user";
 
 export interface InputFieldProps {
@@ -10,17 +11,12 @@ export interface InputFieldProps {
 }
 
 export interface CurrencyListItemProps {
-  currency: string;
-  min: number;
-  max: number;
-}
-
-export interface HeaderProps {
-  userName: string;
+  currency: Asset;
 }
 
 export interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
   value: number;
+  onDelete: (idx: number) => void;
 }

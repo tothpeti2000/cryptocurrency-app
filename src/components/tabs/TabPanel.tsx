@@ -1,8 +1,13 @@
-import { Box, Typography } from "@mui/material";
+import { Delete } from "@mui/icons-material";
+import { Box, Fab } from "@mui/material";
 import { TabPanelProps } from "../../interfaces/props";
 
 const TabPanel = (props: TabPanelProps) => {
-  const { children, value, index, ...other } = props;
+  const { children, value, index, onDelete, ...other } = props;
+
+  const handleClick = () => {
+    alert("Hello World!" + index);
+  };
 
   return (
     <div
@@ -12,7 +17,14 @@ const TabPanel = (props: TabPanelProps) => {
       aria-labelledby={`currency-tab-${index}`}
       {...other}
     >
-      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+      {value === index && (
+        <Box bgcolor={"gray"} p={3}>
+          {index}
+          <Fab color="error" onClick={() => props.onDelete(index)}>
+            <Delete />
+          </Fab>
+        </Box>
+      )}
     </div>
   );
 };

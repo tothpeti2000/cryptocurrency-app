@@ -25,7 +25,7 @@ const CurrencyListItem = (props: CurrencyListItemProps) => {
                   variant="body2"
                   color={"text.primary"}
                 >
-                  {props.max}
+                  {}
                 </Typography>
               </Box>
 
@@ -36,7 +36,7 @@ const CurrencyListItem = (props: CurrencyListItemProps) => {
                   variant="body2"
                   color={"text.primary"}
                 >
-                  {props.min}
+                  {}
                 </Typography>
               </Box>
             </>

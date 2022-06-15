@@ -1,13 +1,15 @@
 import { Button, Grid } from "@mui/material";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useUserContext } from "../../context/UserContext";
 import { UserCredentials } from "../../interfaces/user";
 import InputField from "./InputField";
 
 const LoginForm = () => {
   const { handleSubmit, control } = useForm<UserCredentials>();
+  const { loginUser } = useUserContext();
 
   const onSubmit: SubmitHandler<UserCredentials> = (data) => {
-    console.log(data);
+    loginUser(data);
   };
 
   return (

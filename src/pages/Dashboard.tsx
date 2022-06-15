@@ -5,7 +5,7 @@ import Header from "../components/Header";
 import CurrencyTabs from "../components/tabs/CurrencyTabs";
 
 const Dashboard = () => {
-  return <CurrencyTabs />;
+  return <Header />;
 };
 
 export default Dashboard;
