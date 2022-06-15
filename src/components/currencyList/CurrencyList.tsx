@@ -7,7 +7,7 @@ const CurrencyList = () => {
   return (
     <List>
       {currencies.map((c) => (
-        <CurrencyListItem key={c} currency={c} />
+        <CurrencyListItem key={c} currency={c} min={1} max={10} />
       ))}
     </List>
   );
