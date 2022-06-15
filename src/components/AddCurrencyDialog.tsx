@@ -11,6 +11,7 @@ import {
   Select,
 } from "@mui/material";
 import { useState } from "react";
+import useAPI from "../hooks/useAPI";
 import useDialog from "../hooks/useDialog";
 
 const AddCurrencyDialog = () => {
@@ -22,6 +23,10 @@ const AddCurrencyDialog = () => {
         <DialogTitle>Add new currency</DialogTitle>
 
         <DialogContent>
+          <DialogContentText>
+            Select a currency from the list below
+          </DialogContentText>
+
           <FormControl fullWidth>
             <InputLabel id="currencyLabel">Currency</InputLabel>
             <Select
