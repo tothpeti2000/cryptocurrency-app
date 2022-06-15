@@ -11,8 +11,16 @@ export interface InputFieldProps {
 
 export interface CurrencyListItemProps {
   currency: string;
+  min: number;
+  max: number;
 }
 
 export interface HeaderProps {
   userName: string;
+}
+
+export interface TabPanelProps {
+  children?: React.ReactNode;
+  index: number;
+  value: number;
 }

@@ -1,7 +1,11 @@
+import AddCurrencyDialog from "../components/AddCurrencyDialog";
+import Chart from "../components/Chart";
+import CurrencyList from "../components/currencyList/CurrencyList";
 import Header from "../components/Header";
+import CurrencyTabs from "../components/tabs/CurrencyTabs";
 
 const Dashboard = () => {
-  return <Header userName="User" />;
+  return <Chart />;
 };
 
 export default Dashboard;
