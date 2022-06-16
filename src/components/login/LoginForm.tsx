@@ -1,15 +1,26 @@
 import { Button, Grid } from "@mui/material";
+import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../../context/UserContext";
 import { UserCredentials } from "../../interfaces/user";
+import ErrorToast from "../ErrorToast";
 import InputField from "./InputField";
 
 const LoginForm = () => {
-  const { handleSubmit, control } = useForm<UserCredentials>();
   const { loginUser } = useUserContext();
+  const { handleSubmit, control } = useForm<UserCredentials>();
+  const navigate = useNavigate();
 
-  const onSubmit: SubmitHandler<UserCredentials> = (data) => {
-    loginUser(data);
+  const [error, setError] = useState("");
+
+  const onSubmit: SubmitHandler<UserCredentials> = async (data) => {
+    try {
+      await loginUser(data);
+      navigate("/dashboard");
+    } catch (err) {
+      setError(String(err));
+    }
   };
 
   return (
@@ -38,6 +49,8 @@ const LoginForm = () => {
         <Button type="submit" variant="contained">
           Sign In
         </Button>
+
+        {error && <ErrorToast message={error} />}
       </Grid>
     </form>
   );

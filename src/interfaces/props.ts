@@ -20,3 +20,7 @@ export interface TabPanelProps {
   value: number;
   onDelete: (idx: number) => void;
 }
+
+export interface ErrorToastProps {
+  message: string;
+}

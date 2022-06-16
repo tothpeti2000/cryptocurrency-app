@@ -4,11 +4,12 @@ import { User, UserCredentials } from "../interfaces/user";
 const useUserContextValue = () => {
   const [user, setUser] = useState<User>();
 
-  const loginUser = (credentials: UserCredentials) => {
+  const loginUser = async (credentials: UserCredentials) => {
     const userData = localStorage.getItem(`userData-${credentials.userName}`);
     let user: User;
 
     if (userData === null) {
+      // The user doesn't exist yet so create a new user
       user = {
         userName: credentials.userName,
         password: credentials.password,
@@ -16,11 +17,18 @@ const useUserContextValue = () => {
       };
 
       localStorage.setItem(`userData-${user.userName}`, JSON.stringify(user));
+      setUser(user);
     } else {
       user = JSON.parse(userData);
-    }
 
-    setUser(user);
+      // The user exists but a wrong password was provided
+      if (credentials.password !== user.password) {
+        throw new Error("Wrong password. Please, try again!");
+      } else {
+        // The user exists and the password is correct as well
+        setUser(user);
+      }
+    }
   };
 
   return {
