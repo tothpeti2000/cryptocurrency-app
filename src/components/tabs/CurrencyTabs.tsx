@@ -1,15 +1,13 @@
 import AddIcon from "@mui/icons-material/Add";
 import { Box, Tab, Tabs } from "@mui/material";
 import { useState } from "react";
+import { useDialogContext } from "../../context/DialogContext";
 import { Asset } from "../../interfaces/currency";
-import AddCurrencyDialog from "../AddCurrencyDialog";
 import TabPanel from "./TabPanel";
-import CloseIcon from "@mui/icons-material/Close";
-import { useToggleContext } from "../../context/ToggleContext";
 
 const CurrencyTabs = () => {
   const [value, setValue] = useState(0);
-  const { open } = useToggleContext();
+  const { open } = useDialogContext();
   const [currencies, setCurrencies] = useState<Asset[]>([
     { asset_id: "HUF", name: "Forint" },
     { asset_id: "EUR", name: "Euro" },
@@ -27,7 +25,12 @@ const CurrencyTabs = () => {
   return (
     <Box>
       <Box sx={{ borderBottom: 1, borderColor: "divider", bgcolor: "white" }}>
-        <Tabs value={value} onChange={handleChange} aria-label="currency-tabs">
+        <Tabs
+          value={value}
+          variant={"scrollable"}
+          onChange={handleChange}
+          aria-label="currency-tabs"
+        >
           {currencies.map((c) => (
             <Tab key={c.asset_id} label={c.name} />
           ))}

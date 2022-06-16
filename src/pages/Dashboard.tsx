@@ -6,7 +6,7 @@ import Chart from "../components/Chart";
 import CurrencyList from "../components/currencyList/CurrencyList";
 import Header from "../components/Header";
 import CurrencyTabs from "../components/tabs/CurrencyTabs";
-import { ToggleProvider } from "../context/ToggleContext";
+import { DialogProvider } from "../context/DialogContext";
 import { useUserContext } from "../context/UserContext";
 
 const Dashboard = () => {
@@ -22,7 +22,7 @@ const Dashboard = () => {
   return (
     <Grid container direction={"column"} rowSpacing={2}>
       <Header />
-      <ToggleProvider>
+      <DialogProvider>
         <Grid item container columnSpacing={2}>
           <Grid item xs={3}>
             <CurrencyList />
@@ -32,7 +32,7 @@ const Dashboard = () => {
           </Grid>
           <AddCurrencyDialog />
         </Grid>
-      </ToggleProvider>
+      </DialogProvider>
     </Grid>
   );
 };

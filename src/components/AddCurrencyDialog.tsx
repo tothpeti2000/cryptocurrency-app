@@ -1,19 +1,37 @@
 import {
   Button,
+  CircularProgress,
   Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
   FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
+  NativeSelect,
 } from "@mui/material";
-import { useToggleContext } from "../context/ToggleContext";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useDialogContext } from "../context/DialogContext";
+import useAPI from "../hooks/useAPI";
+import { Asset } from "../interfaces/currency";
 
 const AddCurrencyDialog = () => {
-  const { isOpen, close } = useToggleContext();
+  const { isOpen, close } = useDialogContext();
+  const [assets, setAssets] = useState<Asset[]>();
+  //const { getAssets } = useAPI();
+  //const { isLoading, isError, error, data } = getAssets();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get<Asset[]>(
+        "https://rest.coinapi.io/v1/assets?apikey=51BF9506-7BCA-4C1F-8AA6-D75F64DBA696"
+      );
+
+      setAssets(response.data);
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div>
@@ -26,14 +44,17 @@ const AddCurrencyDialog = () => {
           </DialogContentText>
 
           <FormControl fullWidth>
-            <InputLabel id="currencyLabel">Currency</InputLabel>
-            <Select
-              labelId="currencyLabel"
-              id="currencySelect"
-              label="Currency"
-            >
-              <MenuItem value={10}>Ten</MenuItem>
-            </Select>
+            <NativeSelect>
+              {assets === undefined ? (
+                <CircularProgress />
+              ) : (
+                assets.map((asset) => (
+                  <option key={asset.asset_id} value={asset.asset_id}>
+                    {asset.name}
+                  </option>
+                ))
+              )}
+            </NativeSelect>
           </FormControl>
         </DialogContent>
 
