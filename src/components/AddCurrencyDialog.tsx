@@ -10,12 +10,10 @@ import {
   MenuItem,
   Select,
 } from "@mui/material";
-import { useState } from "react";
-import useAPI from "../hooks/useAPI";
-import useDialog from "../hooks/useDialog";
+import { useToggleContext } from "../context/ToggleContext";
 
 const AddCurrencyDialog = () => {
-  const { isOpen, close } = useDialog();
+  const { isOpen, close } = useToggleContext();
 
   return (
     <div>

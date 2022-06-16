@@ -1,5 +1,6 @@
 import { List } from "@mui/material";
 import { useEffect } from "react";
+import { useUserContext } from "../../context/UserContext";
 import { Asset } from "../../interfaces/currency";
 import CurrencyListItem from "./CurrencyListItem";
 
@@ -22,7 +23,7 @@ const CurrencyList = () => {
   ];
 
   useEffect(() => {
-    /*const ws = new WebSocket("wss://ws.coinapi.io/v1");
+    /*const ws = new WebSocket("wss://ws.coinapi.io/v1/");
 
     ws.onopen = (e) => {
       console.log("WS opened");
@@ -33,6 +34,14 @@ const CurrencyList = () => {
       console.log("WS message");
       const json = JSON.parse(e.data);
       console.log(json);
+    };
+
+    ws.onerror = () => {
+      console.log("WS error");
+    };
+
+    ws.onclose = () => {
+      console.log("WS closed");
     };
 
     return () => ws.close();*/

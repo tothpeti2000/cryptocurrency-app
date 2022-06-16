@@ -5,9 +5,11 @@ import { Asset } from "../../interfaces/currency";
 import AddCurrencyDialog from "../AddCurrencyDialog";
 import TabPanel from "./TabPanel";
 import CloseIcon from "@mui/icons-material/Close";
+import { useToggleContext } from "../../context/ToggleContext";
 
 const CurrencyTabs = () => {
   const [value, setValue] = useState(0);
+  const { open } = useToggleContext();
   const [currencies, setCurrencies] = useState<Asset[]>([
     { asset_id: "HUF", name: "Forint" },
     { asset_id: "EUR", name: "Euro" },
@@ -30,7 +32,7 @@ const CurrencyTabs = () => {
             <Tab key={c.asset_id} label={c.name} />
           ))}
 
-          <Tab label={<AddIcon />} />
+          <Tab label={<AddIcon />} onClick={open} />
         </Tabs>
       </Box>
 
