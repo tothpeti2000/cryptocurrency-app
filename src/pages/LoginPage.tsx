@@ -9,7 +9,6 @@ const LoginPage = () => {
       justifyContent={"center"}
       alignItems={"center"}
       height={"100vh"}
-      bgcolor={"#f0f2f5"}
     >
       <Box>
         <Title />

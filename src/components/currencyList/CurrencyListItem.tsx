@@ -1,13 +1,12 @@
+import TrendingDownIcon from "@mui/icons-material/TrendingDown";
+import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import {
+  Box,
+  Divider,
   ListItem,
   ListItemText,
-  Divider,
-  ListItemIcon,
-  Box,
   Typography,
 } from "@mui/material";
-import TrendingUpIcon from "@mui/icons-material/TrendingUp";
-import TrendingDownIcon from "@mui/icons-material/TrendingDown";
 import { CurrencyListItemProps } from "../../interfaces/props";
 
 const CurrencyListItem = (props: CurrencyListItemProps) => {
@@ -15,9 +14,9 @@ const CurrencyListItem = (props: CurrencyListItemProps) => {
     <>
       <ListItem>
         <ListItemText
-          primary={props.currency}
+          primary={props.currency.name}
           secondary={
-            <>
+            <Typography component={"div"}>
               <Box>
                 <TrendingUpIcon />
                 <Typography
@@ -25,7 +24,7 @@ const CurrencyListItem = (props: CurrencyListItemProps) => {
                   variant="body2"
                   color={"text.primary"}
                 >
-                  {}
+                  {props.currency.name}
                 </Typography>
               </Box>
 
@@ -36,10 +35,10 @@ const CurrencyListItem = (props: CurrencyListItemProps) => {
                   variant="body2"
                   color={"text.primary"}
                 >
-                  {}
+                  {props.currency.name}
                 </Typography>
               </Box>
-            </>
+            </Typography>
           }
         />
       </ListItem>

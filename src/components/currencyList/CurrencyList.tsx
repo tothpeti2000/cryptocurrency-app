@@ -15,10 +15,14 @@ const CurrencyList = () => {
     { asset_id: "HUF", name: "Forint" },
     { asset_id: "EUR", name: "Euro" },
     { asset_id: "USD", name: "Dollar" },
+    { asset_id: "BTC", name: "Bitcoin" },
+    { asset_id: "BTC", name: "Bitcoin" },
+    { asset_id: "BTC", name: "Bitcoin" },
+    { asset_id: "BTC", name: "Bitcoin" },
   ];
 
   useEffect(() => {
-    const ws = new WebSocket("wss://ws.coinapi.io/v1");
+    /*const ws = new WebSocket("wss://ws.coinapi.io/v1");
 
     ws.onopen = (e) => {
       console.log("WS opened");
@@ -31,10 +35,17 @@ const CurrencyList = () => {
       console.log(json);
     };
 
-    return () => ws.close();
+    return () => ws.close();*/
   });
 
-  return <List></List>;
+  return (
+    <List sx={{ bgcolor: "white", boxShadow: 5, px: 2, overflowY: "scroll" }}>
+      <h1>Exchange Rates</h1>
+      {currencies.map((c) => (
+        <CurrencyListItem key={c.asset_id} currency={c} />
+      ))}
+    </List>
+  );
 };
 
 export default CurrencyList;

@@ -23,8 +23,8 @@ const CurrencyTabs = () => {
   };
 
   return (
-    <>
-      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+    <Box>
+      <Box sx={{ borderBottom: 1, borderColor: "divider", bgcolor: "white" }}>
         <Tabs value={value} onChange={handleChange} aria-label="currency-tabs">
           {currencies.map((c) => (
             <Tab key={c.asset_id} label={c.name} />
@@ -42,7 +42,7 @@ const CurrencyTabs = () => {
           onDelete={handleDelete}
         />
       ))}
-    </>
+    </Box>
   );
 };
 
