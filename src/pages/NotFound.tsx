@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
+import FullScreenCenter from "../components/FullScreenCenter";
 
 const NotFound = () => {
   return (
-    <>
-      <h1>404 Not Found</h1>
+    <FullScreenCenter>
+      <h1>Page Not Found</h1>
       <Link to={"/"}>Back to Login</Link>
       <Link to={"/dashboard"}>Back to Dashboard</Link>
-    </>
+    </FullScreenCenter>
   );
 };
 

@@ -1,5 +1,5 @@
 import { Delete } from "@mui/icons-material";
-import { Box, Fab, Grid } from "@mui/material";
+import { Fab, Grid } from "@mui/material";
 import { useUserContext } from "../../context/UserContext";
 import { TabPanelProps } from "../../interfaces/props";
 import Converter from "../converter/Converter";

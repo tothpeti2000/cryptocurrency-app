@@ -2,8 +2,6 @@ import AddIcon from "@mui/icons-material/Add";
 import { Box, Tab, Tabs } from "@mui/material";
 import { useState } from "react";
 import { useDialogContext } from "../../context/DialogContext";
-import { useUserContext } from "../../context/UserContext";
-import { Asset } from "../../interfaces/currency";
 import { UserDisplayProps } from "../../interfaces/props";
 import TabPanel from "./TabPanel";
 

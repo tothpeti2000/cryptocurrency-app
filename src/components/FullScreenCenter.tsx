@@ -9,7 +9,9 @@ const FullScreenCenter: FC = ({ children }) => {
       alignItems={"center"}
       height={"100vh"}
     >
-      {children}
+      <Grid container direction={"column"} alignItems={"center"}>
+        {children}
+      </Grid>
     </Grid>
   );
 };

@@ -1,8 +1,8 @@
-import { Grid, Input } from "@mui/material";
 import CompareArrowsIcon from "@mui/icons-material/CompareArrows";
-import { ChangeEventHandler, useState } from "react";
-import AmountInput from "./AmountInput";
+import { Grid } from "@mui/material";
+import { useState } from "react";
 import { Asset } from "../../interfaces/currency";
+import AmountInput from "./AmountInput";
 
 const Converter = (props: Asset) => {
   const [amount, setAmount] = useState("");
