@@ -2,6 +2,7 @@ import { List } from "@mui/material";
 import { useEffect } from "react";
 import { useUserContext } from "../../context/UserContext";
 import { Asset } from "../../interfaces/currency";
+import { UserDisplayProps } from "../../interfaces/props";
 import CurrencyListItem from "./CurrencyListItem";
 
 const apiCall = {
@@ -11,7 +12,7 @@ const apiCall = {
   subscribe_data_type: ["ohlcv"],
 };
 
-const CurrencyList = () => {
+const CurrencyList = (props: UserDisplayProps) => {
   const currencies: Asset[] = [
     { asset_id: "HUF", name: "Forint" },
     { asset_id: "EUR", name: "Euro" },

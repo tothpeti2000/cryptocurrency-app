@@ -1,34 +1,29 @@
-import { Box, Grid } from "@mui/material";
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Grid } from "@mui/material";
 import AddCurrencyDialog from "../components/AddCurrencyDialog";
-import Chart from "../components/Chart";
 import CurrencyList from "../components/currencyList/CurrencyList";
 import Header from "../components/Header";
+import Redirect from "../components/Redirect";
 import CurrencyTabs from "../components/tabs/CurrencyTabs";
 import { DialogProvider } from "../context/DialogContext";
 import { useUserContext } from "../context/UserContext";
 
 const Dashboard = () => {
   const { user } = useUserContext();
-  const navigate = useNavigate();
 
-  useEffect(() => {
-    if (user === undefined) {
-      navigate("/");
-    }
-  });
+  if (user === undefined) {
+    return <Redirect />;
+  }
 
   return (
     <Grid container direction={"column"} rowSpacing={2}>
-      <Header />
+      <Header user={user} />
       <DialogProvider>
         <Grid item container columnSpacing={2}>
           <Grid item xs={3}>
-            <CurrencyList />
+            <CurrencyList user={user} />
           </Grid>
           <Grid item xs={9}>
-            <CurrencyTabs />
+            <CurrencyTabs user={user} />
           </Grid>
           <AddCurrencyDialog />
         </Grid>

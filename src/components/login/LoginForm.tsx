@@ -1,5 +1,5 @@
 import { Button, Grid } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../../context/UserContext";
@@ -8,10 +8,15 @@ import ErrorToast from "../ErrorToast";
 import InputField from "./InputField";
 
 const LoginForm = () => {
-  const { loginUser } = useUserContext();
-  const { handleSubmit, control } = useForm<UserCredentials>();
+  const { user, loginUser } = useUserContext();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    // If the user is logged in already, redirect to the dashboard
+    user && navigate("/dashboard");
+  });
+
+  const { handleSubmit, control } = useForm<UserCredentials>();
   const [error, setError] = useState("");
 
   const onSubmit: SubmitHandler<UserCredentials> = async (data) => {

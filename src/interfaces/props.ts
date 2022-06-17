@@ -1,7 +1,11 @@
 import { HTMLInputTypeAttribute } from "react";
 import { Control, Path } from "react-hook-form";
 import { Asset } from "./currency";
-import { UserCredentials } from "./user";
+import { User, UserCredentials } from "./user";
+
+export interface UserDisplayProps {
+  user: User;
+}
 
 export interface InputFieldProps {
   name: Path<UserCredentials>;
@@ -23,4 +27,8 @@ export interface TabPanelProps {
 
 export interface ErrorToastProps {
   message: string;
+}
+
+export interface AssetOption {
+  IDWithName: string;
 }
