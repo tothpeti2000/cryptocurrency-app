@@ -2,9 +2,9 @@ import { Grid, Input } from "@mui/material";
 import CompareArrowsIcon from "@mui/icons-material/CompareArrows";
 import { ChangeEventHandler, useState } from "react";
 import AmountInput from "./AmountInput";
-import { AssetWithExchangeRate } from "../../interfaces/currency";
+import { Asset } from "../../interfaces/currency";
 
-const Converter = (props: AssetWithExchangeRate) => {
+const Converter = (props: Asset) => {
   const [amount, setAmount] = useState("");
   const [editedCurrency, setEditedCurrency] = useState("dollar");
 
@@ -19,11 +19,11 @@ const Converter = (props: AssetWithExchangeRate) => {
   };
 
   const toOtherCurrency = (dollars: number) => {
-    return dollars * props.exchangeRate;
+    return dollars / props.price_usd;
   };
 
   const toDollars = (otherCurrencyAmount: number) => {
-    return otherCurrencyAmount / props.exchangeRate;
+    return otherCurrencyAmount * props.price_usd;
   };
 
   const convert = (
@@ -43,7 +43,7 @@ const Converter = (props: AssetWithExchangeRate) => {
   return (
     <Grid container justifyContent={"space-around"} alignItems={"center"}>
       <AmountInput
-        currencyName="Dollars"
+        currencyName="Dollar"
         amount={dollars}
         onChange={handleDollarChange}
       />

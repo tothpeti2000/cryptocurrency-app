@@ -37,7 +37,7 @@ const CurrencyTabs = (props: UserDisplayProps) => {
           key={c.asset_id}
           value={value}
           index={props.user.currencies.indexOf(c)}
-          assetID={c.asset_id}
+          currency={c}
         />
       ))}
     </Box>

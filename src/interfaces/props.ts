@@ -22,7 +22,7 @@ export interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
   value: number;
-  assetID: string;
+  currency: Asset;
 }
 
 export interface ErrorToastProps {

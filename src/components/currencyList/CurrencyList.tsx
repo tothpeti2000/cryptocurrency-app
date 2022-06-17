@@ -14,13 +14,14 @@ const apiCall = {
 
 const CurrencyList = (props: UserDisplayProps) => {
   const currencies: Asset[] = [
+    /*
     { asset_id: "HUF", name: "Forint" },
     { asset_id: "EUR", name: "Euro" },
     { asset_id: "USD", name: "Dollar" },
     { asset_id: "BTC", name: "Bitcoin" },
     { asset_id: "BTC", name: "Bitcoin" },
     { asset_id: "BTC", name: "Bitcoin" },
-    { asset_id: "BTC", name: "Bitcoin" },
+    { asset_id: "BTC", name: "Bitcoin" },*/
   ];
 
   useEffect(() => {

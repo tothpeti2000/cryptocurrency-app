@@ -34,10 +34,9 @@ const AddCurrencyDialog = () => {
   //const { isLoading, isError, error, data } = getAssets();
 
   const handleChange: ChangeEventHandler<HTMLSelectElement> = (e) => {
-    const { value, options, selectedIndex } = e.target;
-    const asset: Asset = { asset_id: value, name: options[selectedIndex].text };
+    const asset = JSON.parse(e.target.value);
 
-    setSelectedValue(value);
+    setSelectedValue(e.target.value);
     setSelectedAsset(asset);
   };
 
@@ -63,24 +62,19 @@ const AddCurrencyDialog = () => {
 
     const assets: Asset[] = [
       {
-        asset_id: "CURR1",
-        name: "Currency1",
+        asset_id: "BTC",
+        name: "Bitcoin",
+        price_usd: 20519,
       },
       {
-        asset_id: "CURR2",
-        name: "Currency2",
+        asset_id: "ARK",
+        name: "Ark",
+        price_usd: 0.4,
       },
       {
-        asset_id: "CURR3",
-        name: "Currency3",
-      },
-      {
-        asset_id: "CURR4",
-        name: "Currency4",
-      },
-      {
-        asset_id: "CURR5",
-        name: "Currency5",
+        asset_id: "USD",
+        name: "Dollar",
+        price_usd: 1,
       },
     ];
 
@@ -102,7 +96,7 @@ const AddCurrencyDialog = () => {
               <NativeSelect value={selectedValue} onChange={handleChange}>
                 <option value="">None</option>
                 {assets.map((asset) => (
-                  <option key={asset.asset_id} value={asset.asset_id}>
+                  <option key={asset.asset_id} value={JSON.stringify(asset)}>
                     {asset.name}
                   </option>
                 ))}

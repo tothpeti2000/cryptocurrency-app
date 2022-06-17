@@ -5,11 +5,11 @@ import { TabPanelProps } from "../../interfaces/props";
 import Converter from "../converter/Converter";
 
 const TabPanel = (props: TabPanelProps) => {
-  const { children, value, index, assetID, ...other } = props;
+  const { children, value, index, currency, ...other } = props;
   const { deleteCurrency } = useUserContext();
 
   const handleClick = () => {
-    deleteCurrency(assetID);
+    deleteCurrency(currency.asset_id);
   };
 
   return (
@@ -22,10 +22,10 @@ const TabPanel = (props: TabPanelProps) => {
     >
       {value === index && (
         <Grid container direction={"column"} bgcolor={"gray"} p={3}>
-          <Grid item>Chart for {assetID} exchange rate</Grid>
+          <Grid item>Chart for {currency.name} exchange rate</Grid>
 
           <Grid item>
-            <Converter asset_id={assetID} name="Currency" exchangeRate={2} />
+            <Converter {...currency} />
           </Grid>
 
           <Grid item alignSelf={"flex-end"}>
