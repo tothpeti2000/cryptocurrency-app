@@ -22,13 +22,9 @@ export interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
   value: number;
-  onDelete: (idx: number) => void;
+  assetID: string;
 }
 
 export interface ErrorToastProps {
   message: string;
-}
-
-export interface AssetOption {
-  IDWithName: string;
 }

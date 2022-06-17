@@ -57,13 +57,24 @@ const useUserContextValue = () => {
     setUser(undefined);
   };
 
-  const addCurrency = (IDWithName: string) => {
-    /*const currencyData = IDWithName.split(",");
+  const addCurrency = (currency: Asset) => {
+    if (user) {
+      const newUser = { ...user };
+      newUser.currencies.push(currency);
 
-    const newCurrency: Asset = {
-      asset_id: currencyData[0],
-      name: currencyData[1],
-    };*/
+      saveUser(newUser);
+    }
+  };
+
+  const deleteCurrency = (assetID: string) => {
+    if (user) {
+      const newUser = { ...user };
+      newUser.currencies = newUser.currencies.filter(
+        (c) => c.asset_id !== assetID
+      );
+
+      saveUser(newUser);
+    }
   };
 
   return {
@@ -71,6 +82,7 @@ const useUserContextValue = () => {
     loginUser,
     logoutUser,
     addCurrency,
+    deleteCurrency,
   };
 };
 

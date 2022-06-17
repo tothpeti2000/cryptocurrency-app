@@ -15,8 +15,6 @@ const CurrencyTabs = (props: UserDisplayProps) => {
     setValue(newValue);
   };
 
-  const handleDelete = (idx: number) => {};
-
   return (
     <Box>
       <Box sx={{ borderBottom: 1, borderColor: "divider", bgcolor: "white" }}>
@@ -39,7 +37,7 @@ const CurrencyTabs = (props: UserDisplayProps) => {
           key={c.asset_id}
           value={value}
           index={props.user.currencies.indexOf(c)}
-          onDelete={handleDelete}
+          assetID={c.asset_id}
         />
       ))}
     </Box>
