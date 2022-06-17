@@ -13,8 +13,6 @@ const apiCall = {
 };
 
 const CurrencyList = (props: UserDisplayProps) => {
-  const { user } = useUserContext();
-
   useEffect(() => {
     /*const ws = new WebSocket("wss://ws.coinapi.io/v1/");
 
@@ -43,7 +41,7 @@ const CurrencyList = (props: UserDisplayProps) => {
   return (
     <List sx={{ bgcolor: "white", boxShadow: 5, px: 2, overflowY: "scroll" }}>
       <h1>Exchange Rates</h1>
-      {user?.currencies.map((c) => (
+      {props.user.currencies.map((c) => (
         <CurrencyListItem key={c.asset_id} currency={c} />
       ))}
     </List>

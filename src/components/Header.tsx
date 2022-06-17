@@ -15,15 +15,16 @@ const Header = (props: UserDisplayProps) => {
 
   return (
     <Box bgcolor={"white"} boxShadow={5} p={2}>
-      <h1>Hello {props.user.userName}!</h1>
+      <h1>
+        Hello {props.user.userName}!
+        <IconButton onClick={handleClick}>
+          <LogoutIcon />
+        </IconButton>
+      </h1>
       <Typography variant="body1">
-        Add a new currency or check out the exchange rate of the previously
+        Add a new currency or check out the exchange rates of the previously
         added ones
       </Typography>
-
-      <IconButton onClick={handleClick}>
-        <LogoutIcon />
-      </IconButton>
     </Box>
   );
 };
