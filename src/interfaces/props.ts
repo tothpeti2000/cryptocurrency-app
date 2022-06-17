@@ -28,3 +28,9 @@ export interface TabPanelProps {
 export interface ErrorToastProps {
   message: string;
 }
+
+export interface AmountInputProps {
+  currencyName: string;
+  amount: string;
+  onChange: (amount: string) => void;
+}
