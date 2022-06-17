@@ -13,16 +13,7 @@ const apiCall = {
 };
 
 const CurrencyList = (props: UserDisplayProps) => {
-  const currencies: Asset[] = [
-    /*
-    { asset_id: "HUF", name: "Forint" },
-    { asset_id: "EUR", name: "Euro" },
-    { asset_id: "USD", name: "Dollar" },
-    { asset_id: "BTC", name: "Bitcoin" },
-    { asset_id: "BTC", name: "Bitcoin" },
-    { asset_id: "BTC", name: "Bitcoin" },
-    { asset_id: "BTC", name: "Bitcoin" },*/
-  ];
+  const { user } = useUserContext();
 
   useEffect(() => {
     /*const ws = new WebSocket("wss://ws.coinapi.io/v1/");
@@ -52,7 +43,7 @@ const CurrencyList = (props: UserDisplayProps) => {
   return (
     <List sx={{ bgcolor: "white", boxShadow: 5, px: 2, overflowY: "scroll" }}>
       <h1>Exchange Rates</h1>
-      {currencies.map((c) => (
+      {user?.currencies.map((c) => (
         <CurrencyListItem key={c.asset_id} currency={c} />
       ))}
     </List>
