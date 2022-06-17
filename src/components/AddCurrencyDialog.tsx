@@ -33,7 +33,7 @@ const AddCurrencyDialog = () => {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
+    /*const fetchData = async () => {
       const response = await axios.get<Asset[]>(
         "https://rest.coinapi.io/v1/assets?apikey=51BF9506-7BCA-4C1F-8AA6-D75F64DBA696"
       );
@@ -41,7 +41,7 @@ const AddCurrencyDialog = () => {
       setAssets(response.data);
     };
 
-    fetchData();
+    fetchData();*/
   }, []);
 
   return (

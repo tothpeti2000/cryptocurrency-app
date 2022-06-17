@@ -3,21 +3,31 @@ import { Asset } from "../interfaces/currency";
 import { User, UserCredentials } from "../interfaces/user";
 
 const useUserContextValue = () => {
+  const getCurrentUserName = () => {
+    return localStorage.getItem("currentUser");
+  };
+
+  const getUserData = (userName: string) => {
+    return localStorage.getItem(`userData-${userName}`);
+  };
+
   const getCurrentUser = (): User | undefined => {
-    const currentUserName = localStorage.getItem("currentUser");
-    const currentUserData = localStorage.getItem(`userData-${currentUserName}`);
+    const userName = getCurrentUserName();
+    const currentUserData = userName && getUserData(userName);
 
     return currentUserData ? JSON.parse(currentUserData) : undefined;
   };
 
-  const saveCurrentUser = (user: User) => {
+  const saveUser = (user: User) => {
+    localStorage.setItem("currentUser", user.userName);
     localStorage.setItem(`userData-${user.userName}`, JSON.stringify(user));
+    setUser(user);
   };
 
   const [user, setUser] = useState<User | undefined>(getCurrentUser());
 
   const loginUser = async (credentials: UserCredentials) => {
-    const userData = localStorage.getItem(`userData-${credentials.userName}`);
+    const userData = getUserData(credentials.userName);
     let user: User;
 
     if (userData === null) {
@@ -28,8 +38,7 @@ const useUserContextValue = () => {
         currencies: [],
       };
 
-      saveCurrentUser(user);
-      setUser(user);
+      saveUser(user);
     } else {
       user = JSON.parse(userData);
 
@@ -38,8 +47,7 @@ const useUserContextValue = () => {
         throw new Error("Wrong password. Please, try again!");
       } else {
         // The user exists and the password is correct as well
-        localStorage.setItem("currentUser", user.userName);
-        setUser(user);
+        saveUser(user);
       }
     }
   };
@@ -50,12 +58,12 @@ const useUserContextValue = () => {
   };
 
   const addCurrency = (IDWithName: string) => {
-    const currencyData = IDWithName.split(",");
+    /*const currencyData = IDWithName.split(",");
 
     const newCurrency: Asset = {
       asset_id: currencyData[0],
       name: currencyData[1],
-    };
+    };*/
   };
 
   return {
