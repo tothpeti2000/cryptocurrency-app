@@ -1,20 +1,16 @@
-import { Box, Grid } from "@mui/material";
+import { Box } from "@mui/material";
+import FullScreenCenter from "../components/FullScreenCenter";
 import LoginForm from "../components/login/LoginForm";
 import Title from "../components/Title";
 
 const LoginPage = () => {
   return (
-    <Grid
-      container
-      justifyContent={"center"}
-      alignItems={"center"}
-      height={"100vh"}
-    >
+    <FullScreenCenter>
       <Box>
         <Title />
         <LoginForm />
       </Box>
-    </Grid>
+    </FullScreenCenter>
   );
 };
 
