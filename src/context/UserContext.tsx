@@ -77,12 +77,19 @@ const useUserContextValue = () => {
     }
   };
 
+  const canAddCurrency = (assetID: string) => {
+    return (
+      user && user.currencies.find((c) => c.asset_id === assetID) === undefined
+    );
+  };
+
   return {
     user,
     loginUser,
     logoutUser,
     addCurrency,
     deleteCurrency,
+    canAddCurrency,
   };
 };
 

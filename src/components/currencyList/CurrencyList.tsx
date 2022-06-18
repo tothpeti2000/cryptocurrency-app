@@ -42,8 +42,8 @@ const CurrencyList = (props: UserDisplayProps) => {
 
   return (
     <Box bgcolor={"white"} boxShadow={5} px={2}>
+      <h1>Exchange Rates</h1>
       <List>
-        <h1>Exchange Rates</h1>
         {props.user.currencies.map((c) => (
           <CurrencyListItem key={c.asset_id} currency={c} />
         ))}

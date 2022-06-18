@@ -14,12 +14,12 @@ const CurrencyTabs = (props: UserDisplayProps) => {
   };
 
   return (
-    <Stack boxShadow={5}>
+    <Stack boxShadow={5} px={2} bgcolor={"white"}>
+      <h1>My Currencies</h1>
       <Box
         sx={{
           borderBottom: 1,
           borderColor: "divider",
-          bgcolor: "white",
         }}
       >
         <Tabs

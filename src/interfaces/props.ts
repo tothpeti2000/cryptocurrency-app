@@ -34,3 +34,9 @@ export interface AmountInputProps {
   amount: string;
   onChange: (amount: string) => void;
 }
+
+export interface DialogFrameProps {
+  title: string;
+  contentText: string;
+  onSubmit: () => void;
+}
