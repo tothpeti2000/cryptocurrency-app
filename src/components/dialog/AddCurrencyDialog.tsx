@@ -30,6 +30,8 @@ const AddCurrencyDialog = () => {
     selectedAsset &&
       selectedAsset.asset_id !== "" &&
       addCurrency(selectedAsset);
+
+    setSelectedValue("");
   };
 
   const { data: assets, isLoading } = useQuery(

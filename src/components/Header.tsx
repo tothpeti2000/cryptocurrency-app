@@ -3,6 +3,7 @@ import { UserDisplayProps } from "../interfaces/props";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useUserContext } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
+import { styles } from "../styles/styles";
 
 const Header = (props: UserDisplayProps) => {
   const { logoutUser } = useUserContext();
@@ -14,7 +15,7 @@ const Header = (props: UserDisplayProps) => {
   };
 
   return (
-    <Box bgcolor={"white"} boxShadow={5} p={2}>
+    <Box {...styles.boxWithShadow}>
       <h1>
         Hello {props.user.userName}!
         <IconButton onClick={handleClick}>

@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useUserContext } from "../../context/UserContext";
 import { Asset } from "../../interfaces/currency";
 import { UserDisplayProps } from "../../interfaces/props";
+import { styles } from "../../styles/styles";
 import CurrencyListItem from "./CurrencyListItem";
 
 const apiCall = {
@@ -41,7 +42,7 @@ const CurrencyList = (props: UserDisplayProps) => {
   }, []);
 
   return (
-    <Box bgcolor={"white"} boxShadow={5} px={2}>
+    <Box {...styles.boxWithShadow}>
       <h1>Exchange Rates</h1>
       <List>
         {props.user.currencies.map((c) => (
