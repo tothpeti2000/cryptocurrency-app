@@ -1,15 +1,10 @@
-import {
-  CircularProgress,
-  FormControl,
-  NativeSelect,
-  Stack,
-} from "@mui/material";
+import { FormControl, NativeSelect } from "@mui/material";
 import { ChangeEventHandler, useState } from "react";
 import { useQuery } from "react-query";
 import useMockAPI from "../../api/mock/useMockAPI";
 import { queryOptions } from "../../api/useAPI";
 import { useUserContext } from "../../context/UserContext";
-import { Asset } from "../../interfaces/currency";
+import Spinner from "../Spinner";
 import DialogFrame from "./DialogFrame";
 
 const AddCurrencyDialog = () => {
@@ -17,21 +12,18 @@ const AddCurrencyDialog = () => {
   const { getAllAssets } = useMockAPI();
 
   const [selectedValue, setSelectedValue] = useState("");
-  const [selectedAsset, setSelectedAsset] = useState<Asset>();
 
   const handleChange: ChangeEventHandler<HTMLSelectElement> = (e) => {
-    const asset = JSON.parse(e.target.value);
-
     setSelectedValue(e.target.value);
-    setSelectedAsset(asset);
   };
 
   const handleSubmit = () => {
-    selectedAsset &&
-      selectedAsset.asset_id !== "" &&
-      addCurrency(selectedAsset);
+    if (selectedValue !== "") {
+      const asset = JSON.parse(selectedValue);
+      addCurrency(asset);
 
-    setSelectedValue("");
+      setSelectedValue("");
+    }
   };
 
   const { data: assets, isLoading } = useQuery(
@@ -46,11 +38,7 @@ const AddCurrencyDialog = () => {
       contentText="Select a currency from the list below"
       onSubmit={handleSubmit}
     >
-      {isLoading && (
-        <Stack alignItems={"center"}>
-          <CircularProgress />
-        </Stack>
-      )}
+      {isLoading && <Spinner />}
 
       {assets && (
         <FormControl fullWidth>
