@@ -18,16 +18,21 @@ import {
   useState,
 } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { useQuery } from "react-query";
 import { useDialogContext } from "../context/DialogContext";
 import { useUserContext } from "../context/UserContext";
 import useAPI from "../hooks/useAPI";
 import { Asset } from "../interfaces/currency";
 
+interface Response {
+  data: Asset[];
+}
+
 const AddCurrencyDialog = () => {
   const { isOpen, close } = useDialogContext();
   const { addCurrency } = useUserContext();
 
-  const [assets, setAssets] = useState<Asset[]>();
+  //const [assets, setAssets] = useState<Asset[]>();
   const [selectedValue, setSelectedValue] = useState("");
   const [selectedAsset, setSelectedAsset] = useState<Asset>();
   //const { getAssets } = useAPI();
@@ -49,37 +54,38 @@ const AddCurrencyDialog = () => {
     close();
   };
 
-  useEffect(() => {
-    /*const fetchData = async () => {
-      const response = await axios.get<Asset[]>(
+  const { data: assets } = useQuery(
+    "assets",
+    async () => {
+      console.log("Hello World!");
+
+      const response: Response = {
+        data: [
+          {
+            asset_id: "BTC",
+            name: "Bitcoin",
+            price_usd: 20519,
+          },
+          {
+            asset_id: "ARK",
+            name: "Ark",
+            price_usd: 0.4,
+          },
+          {
+            asset_id: "USD",
+            name: "Dollar",
+            price_usd: 1,
+          },
+        ],
+      };
+
+      return response;
+      /*return await axios.get<Asset[]>(
         "https://rest.coinapi.io/v1/assets?apikey=51BF9506-7BCA-4C1F-8AA6-D75F64DBA696"
-      );
-
-      setAssets(response.data);
-    };
-
-    fetchData();*/
-
-    const assets: Asset[] = [
-      {
-        asset_id: "BTC",
-        name: "Bitcoin",
-        price_usd: 20519,
-      },
-      {
-        asset_id: "ARK",
-        name: "Ark",
-        price_usd: 0.4,
-      },
-      {
-        asset_id: "USD",
-        name: "Dollar",
-        price_usd: 1,
-      },
-    ];
-
-    setAssets(assets);
-  }, []);
+      );*/
+    },
+    { refetchOnMount: false, refetchOnWindowFocus: false }
+  );
 
   return (
     <Dialog open={isOpen} onClose={close}>
@@ -95,7 +101,7 @@ const AddCurrencyDialog = () => {
             <FormControl fullWidth>
               <NativeSelect value={selectedValue} onChange={handleChange}>
                 <option value="">None</option>
-                {assets.map((asset) => (
+                {assets.data.map((asset) => (
                   <option key={asset.asset_id} value={JSON.stringify(asset)}>
                     {asset.name}
                   </option>
