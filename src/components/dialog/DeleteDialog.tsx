@@ -1,11 +1,8 @@
 import { useUserContext } from "../../context/UserContext";
+import { DeleteDialogProps } from "../../interfaces/props";
 import DialogFrame from "./DialogFrame";
 
-interface Props {
-  assetID: string;
-}
-
-const DeleteDialog = (props: Props) => {
+const DeleteDialog = (props: DeleteDialogProps) => {
   const { deleteCurrency } = useUserContext();
 
   const handleSubmit = () => {

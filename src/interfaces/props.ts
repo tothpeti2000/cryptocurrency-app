@@ -40,3 +40,7 @@ export interface DialogFrameProps {
   contentText: string;
   onSubmit: Function;
 }
+
+export interface DeleteDialogProps {
+  assetID: string;
+}
