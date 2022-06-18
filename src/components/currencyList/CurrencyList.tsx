@@ -6,10 +6,12 @@ import { UserDisplayProps } from "../../interfaces/props";
 import CurrencyListItem from "./CurrencyListItem";
 
 const apiCall = {
-  type: "hello",
+  event: "bts:subscribe",
+  data: { channel: "order_book_btcusd" },
+  /*type: "hello",
   apikey: "51BF9506-7BCA-4C1F-8AA6-D75F64DBA696",
   heartbeat: false,
-  subscribe_data_type: ["ohlcv"],
+  subscribe_data_type: ["ohlcv"],*/
 };
 
 const CurrencyList = (props: UserDisplayProps) => {
@@ -36,7 +38,7 @@ const CurrencyList = (props: UserDisplayProps) => {
     };
 
     return () => ws.close();*/
-  });
+  }, []);
 
   return (
     <List sx={{ bgcolor: "white", boxShadow: 5, px: 2, overflowY: "scroll" }}>

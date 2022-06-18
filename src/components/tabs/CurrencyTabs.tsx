@@ -14,7 +14,7 @@ const CurrencyTabs = (props: UserDisplayProps) => {
   };
 
   return (
-    <Box>
+    <Box sx={{ boxShadow: 5 }}>
       <Box sx={{ borderBottom: 1, borderColor: "divider", bgcolor: "white" }}>
         <Tabs
           value={value}

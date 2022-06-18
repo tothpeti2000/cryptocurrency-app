@@ -2,6 +2,7 @@ import { Delete } from "@mui/icons-material";
 import { Fab, Grid } from "@mui/material";
 import { useUserContext } from "../../context/UserContext";
 import { TabPanelProps } from "../../interfaces/props";
+import Chart from "../Chart";
 import Converter from "../converter/Converter";
 
 const TabPanel = (props: TabPanelProps) => {
@@ -21,8 +22,8 @@ const TabPanel = (props: TabPanelProps) => {
       {...other}
     >
       {value === index && (
-        <Grid container direction={"column"} bgcolor={"gray"} p={3}>
-          <Grid item>Chart for {currency.name} exchange rate</Grid>
+        <Grid container direction={"column"} p={3}>
+          <Chart />
 
           <Grid item>
             <Converter {...currency} />
