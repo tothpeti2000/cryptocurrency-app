@@ -8,35 +8,23 @@ import {
   DialogTitle,
   FormControl,
   NativeSelect,
+  Stack,
 } from "@mui/material";
-import axios from "axios";
-import {
-  ChangeEventHandler,
-  FormEventHandler,
-  SyntheticEvent,
-  useEffect,
-  useState,
-} from "react";
-import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { ChangeEventHandler, FormEventHandler, useState } from "react";
 import { useQuery } from "react-query";
+import useAPI, { queryOptions } from "../api/useAPI";
+import useMockAPI from "../api/mock/useMockAPI";
 import { useDialogContext } from "../context/DialogContext";
 import { useUserContext } from "../context/UserContext";
-import useAPI from "../hooks/useAPI";
 import { Asset } from "../interfaces/currency";
-
-interface Response {
-  data: Asset[];
-}
 
 const AddCurrencyDialog = () => {
   const { isOpen, close } = useDialogContext();
   const { addCurrency } = useUserContext();
+  const { getAllAssets } = useMockAPI();
 
-  //const [assets, setAssets] = useState<Asset[]>();
   const [selectedValue, setSelectedValue] = useState("");
   const [selectedAsset, setSelectedAsset] = useState<Asset>();
-  //const { getAssets } = useAPI();
-  //const { isLoading, isError, error, data } = getAssets();
 
   const handleChange: ChangeEventHandler<HTMLSelectElement> = (e) => {
     const asset = JSON.parse(e.target.value);
@@ -54,37 +42,10 @@ const AddCurrencyDialog = () => {
     close();
   };
 
-  const { data: assets } = useQuery(
+  const { data: assets, isLoading } = useQuery(
     "assets",
-    async () => {
-      console.log("Hello World!");
-
-      const response: Response = {
-        data: [
-          {
-            asset_id: "BTC",
-            name: "Bitcoin",
-            price_usd: 20519,
-          },
-          {
-            asset_id: "ARK",
-            name: "Ark",
-            price_usd: 0.4,
-          },
-          {
-            asset_id: "USD",
-            name: "Dollar",
-            price_usd: 1,
-          },
-        ],
-      };
-
-      return response;
-      /*return await axios.get<Asset[]>(
-        "https://rest.coinapi.io/v1/assets?apikey=51BF9506-7BCA-4C1F-8AA6-D75F64DBA696"
-      );*/
-    },
-    { refetchOnMount: false, refetchOnWindowFocus: false }
+    getAllAssets,
+    queryOptions
   );
 
   return (
@@ -96,6 +57,12 @@ const AddCurrencyDialog = () => {
           <DialogContentText>
             Select a currency from the list below
           </DialogContentText>
+
+          {isLoading && (
+            <Stack alignItems={"center"}>
+              <CircularProgress />
+            </Stack>
+          )}
 
           {assets && (
             <FormControl fullWidth>

@@ -23,7 +23,9 @@ const TabPanel = (props: TabPanelProps) => {
     >
       {value === index && (
         <Grid container direction={"column"} p={3}>
-          <Chart />
+          <Grid item>
+            <Chart />
+          </Grid>
 
           <Grid item>
             <Converter {...currency} />

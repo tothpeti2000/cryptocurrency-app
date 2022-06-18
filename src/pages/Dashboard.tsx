@@ -10,12 +10,13 @@ import { useUserContext } from "../context/UserContext";
 const Dashboard = () => {
   const { user } = useUserContext();
 
+  // If an unauthenticated user tries to access the page, show Redirect instead
   if (user === undefined) {
     return <Redirect />;
   }
 
   return (
-    <Grid container direction={"column"} rowSpacing={2}>
+    <Grid container direction={"column"} rowSpacing={2} height={"100vh"}>
       <Header user={user} />
       <DialogProvider>
         <Grid item container columnSpacing={2}>
