@@ -1,5 +1,5 @@
 import { Delete } from "@mui/icons-material";
-import { Fab, Grid } from "@mui/material";
+import { Box, Fab, Grid, Stack } from "@mui/material";
 import { useUserContext } from "../../context/UserContext";
 import { TabPanelProps } from "../../interfaces/props";
 import Chart from "../Chart";
@@ -22,21 +22,15 @@ const TabPanel = (props: TabPanelProps) => {
       {...other}
     >
       {value === index && (
-        <Grid container direction={"column"} p={3}>
-          <Grid item>
-            <Chart />
-          </Grid>
-
-          <Grid item>
-            <Converter {...currency} />
-          </Grid>
-
-          <Grid item alignSelf={"flex-end"}>
+        <Stack p={3} bgcolor="white">
+          <Chart />
+          <Converter {...currency} />
+          <Box alignSelf={"flex-end"}>
             <Fab color="error" onClick={handleClick}>
               <Delete />
             </Fab>
-          </Grid>
-        </Grid>
+          </Box>
+        </Stack>
       )}
     </div>
   );

@@ -1,4 +1,4 @@
-import { List } from "@mui/material";
+import { Box, List } from "@mui/material";
 import { useEffect } from "react";
 import { useUserContext } from "../../context/UserContext";
 import { Asset } from "../../interfaces/currency";
@@ -41,12 +41,14 @@ const CurrencyList = (props: UserDisplayProps) => {
   }, []);
 
   return (
-    <List sx={{ bgcolor: "white", boxShadow: 5, px: 2, overflowY: "scroll" }}>
-      <h1>Exchange Rates</h1>
-      {props.user.currencies.map((c) => (
-        <CurrencyListItem key={c.asset_id} currency={c} />
-      ))}
-    </List>
+    <Box bgcolor={"white"} boxShadow={5} px={2}>
+      <List>
+        <h1>Exchange Rates</h1>
+        {props.user.currencies.map((c) => (
+          <CurrencyListItem key={c.asset_id} currency={c} />
+        ))}
+      </List>
+    </Box>
   );
 };
 

@@ -20,6 +20,16 @@ export const assetsSuccess: Response<Asset[]> = {
       price_usd: 0.4,
     },
     {
+      asset_id: "BTG",
+      name: "Bitgem",
+      price_usd: 15.53,
+    },
+    {
+      asset_id: "ADA",
+      name: "Cardano",
+      price_usd: 0.46,
+    },
+    {
       asset_id: "USD",
       name: "Dollar",
       price_usd: 1,

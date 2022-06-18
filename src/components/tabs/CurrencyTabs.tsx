@@ -1,5 +1,5 @@
 import AddIcon from "@mui/icons-material/Add";
-import { Box, Tab, Tabs } from "@mui/material";
+import { Box, Stack, Tab, Tabs } from "@mui/material";
 import { useState } from "react";
 import { useDialogContext } from "../../context/DialogContext";
 import { UserDisplayProps } from "../../interfaces/props";
@@ -14,8 +14,14 @@ const CurrencyTabs = (props: UserDisplayProps) => {
   };
 
   return (
-    <Box sx={{ boxShadow: 5 }}>
-      <Box sx={{ borderBottom: 1, borderColor: "divider", bgcolor: "white" }}>
+    <Stack boxShadow={5}>
+      <Box
+        sx={{
+          borderBottom: 1,
+          borderColor: "divider",
+          bgcolor: "white",
+        }}
+      >
         <Tabs
           value={value}
           variant={"scrollable"}
@@ -38,7 +44,7 @@ const CurrencyTabs = (props: UserDisplayProps) => {
           currency={c}
         />
       ))}
-    </Box>
+    </Stack>
   );
 };
 
