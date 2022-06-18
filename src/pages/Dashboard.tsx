@@ -1,4 +1,4 @@
-import { Stack } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import CurrencyList from "../components/currencyList/CurrencyList";
 import Header from "../components/Header";
 import Redirect from "../components/Redirect";
@@ -17,15 +17,17 @@ const Dashboard = () => {
   return (
     <Stack spacing={2}>
       <Header user={user} />
+
       <Stack direction={"row"} spacing={2}>
-        <Stack width={"25%"}>
+        <Box width={"25%"}>
           <CurrencyList user={user} />
-        </Stack>
-        <Stack width={"75%"}>
+        </Box>
+
+        <Box width={"75%"}>
           <DialogProvider>
             <CurrencyTabs user={user} />
           </DialogProvider>
-        </Stack>
+        </Box>
       </Stack>
     </Stack>
   );

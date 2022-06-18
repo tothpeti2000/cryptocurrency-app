@@ -3,7 +3,7 @@ import { Box, Fab, Stack } from "@mui/material";
 import { useDialogContext } from "../../context/DialogContext";
 import { useUserContext } from "../../context/UserContext";
 import { TabPanelProps } from "../../interfaces/props";
-import Chart from "../Chart";
+import Chart from "./Chart";
 import Converter from "../converter/Converter";
 import DeleteDialog from "../dialog/DeleteDialog";
 
