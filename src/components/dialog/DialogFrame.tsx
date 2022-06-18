@@ -7,7 +7,7 @@ import {
   DialogContentText,
 } from "@mui/material";
 import { FC, FormEventHandler } from "react";
-import { useDialogContext } from "../../context/DialogContext";
+import { useToggleContext } from "../../context/ToggleContext";
 import { DialogFrameProps } from "../../interfaces/props";
 
 const DialogFrame: FC<DialogFrameProps> = ({
@@ -16,7 +16,7 @@ const DialogFrame: FC<DialogFrameProps> = ({
   contentText,
   onSubmit,
 }) => {
-  const { isOpen, close } = useDialogContext();
+  const { isOpen, close } = useToggleContext();
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();

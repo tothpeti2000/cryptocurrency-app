@@ -6,17 +6,24 @@ import { useUserContext } from "../../context/UserContext";
 import { UserCredentials } from "../../interfaces/user";
 import ErrorToast from "../ErrorToast";
 import InputField from "./InputField";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useToggleContext } from "../../context/ToggleContext";
 
 const LoginForm = () => {
-  const { user, loginUser } = useUserContext();
+  const { user, loginUser, loginSchema } = useUserContext();
   const navigate = useNavigate();
+  const { open } = useToggleContext();
 
   useEffect(() => {
     // If the user is logged in already, redirect to the dashboard
     user && navigate("/dashboard");
   });
 
-  const { handleSubmit, control } = useForm<UserCredentials>();
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<UserCredentials>({ resolver: yupResolver(loginSchema) });
   const [error, setError] = useState("");
 
   const onSubmit: SubmitHandler<UserCredentials> = async (data) => {
@@ -25,6 +32,7 @@ const LoginForm = () => {
       navigate("/dashboard");
     } catch (err) {
       setError(String(err));
+      open();
     }
   };
 
@@ -44,6 +52,7 @@ const LoginForm = () => {
           label="Username"
           type="text"
         />
+
         <InputField
           name="password"
           control={control}
@@ -55,6 +64,12 @@ const LoginForm = () => {
           Sign In
         </Button>
 
+        {errors.userName?.message && (
+          <ErrorToast message={errors.userName.message} />
+        )}
+        {errors.password?.message && (
+          <ErrorToast message={errors.password.message} />
+        )}
         {error && <ErrorToast message={error} />}
       </Grid>
     </form>

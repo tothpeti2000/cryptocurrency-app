@@ -1,8 +1,20 @@
 import React, { createContext, FC, useContext, useState } from "react";
 import { Asset } from "../interfaces/currency";
 import { User, UserCredentials } from "../interfaces/user";
+import * as yup from "yup";
 
 const useUserContextValue = () => {
+  const loginSchema = yup.object({
+    userName: yup
+      .string()
+      .required("Please, enter your username!")
+      .min(4, "Please, enter a username with at least 4 characters!"),
+    password: yup
+      .string()
+      .required("Please, enter your password!")
+      .min(8, "Please, enter a password with at least 8 characters!"),
+  });
+
   const getCurrentUserName = () => {
     return sessionStorage.getItem("currentUser");
   };
@@ -85,6 +97,7 @@ const useUserContextValue = () => {
 
   return {
     user,
+    loginSchema,
     loginUser,
     logoutUser,
     addCurrency,

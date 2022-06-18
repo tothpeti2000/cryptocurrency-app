@@ -3,7 +3,7 @@ import CurrencyList from "../components/currencyList/CurrencyList";
 import Header from "../components/Header";
 import Redirect from "../components/Redirect";
 import CurrencyTabs from "../components/tabs/CurrencyTabs";
-import { DialogProvider } from "../context/DialogContext";
+import { ToggleProvider } from "../context/ToggleContext";
 import { useUserContext } from "../context/UserContext";
 
 const Dashboard = () => {
@@ -24,9 +24,9 @@ const Dashboard = () => {
         </Box>
 
         <Box width={"75%"}>
-          <DialogProvider>
+          <ToggleProvider>
             <CurrencyTabs user={user} />
-          </DialogProvider>
+          </ToggleProvider>
         </Box>
       </Stack>
     </Stack>

@@ -1,15 +1,14 @@
 import { Delete } from "@mui/icons-material";
 import { Box, Fab, Stack } from "@mui/material";
-import { useDialogContext } from "../../context/DialogContext";
-import { useUserContext } from "../../context/UserContext";
+import { useToggleContext } from "../../context/ToggleContext";
 import { TabPanelProps } from "../../interfaces/props";
-import Chart from "./Chart";
 import Converter from "../converter/Converter";
 import DeleteDialog from "../dialog/DeleteDialog";
+import Chart from "./Chart";
 
 const TabPanel = (props: TabPanelProps) => {
   const { children, value, index, currency, ...other } = props;
-  const { open } = useDialogContext();
+  const { open } = useToggleContext();
 
   return (
     <div

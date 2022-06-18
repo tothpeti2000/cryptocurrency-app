@@ -1,14 +1,14 @@
 import AddIcon from "@mui/icons-material/Add";
 import { Box, Stack, Tab, Tabs } from "@mui/material";
 import { useState } from "react";
-import { DialogProvider, useDialogContext } from "../../context/DialogContext";
+import { ToggleProvider, useToggleContext } from "../../context/ToggleContext";
 import { UserDisplayProps } from "../../interfaces/props";
 import { styles } from "../../styles/styles";
 import AddCurrencyDialog from "../dialog/AddCurrencyDialog";
 import TabPanel from "./TabPanel";
 
 const CurrencyTabs = (props: UserDisplayProps) => {
-  const { open } = useDialogContext();
+  const { open } = useToggleContext();
   const [currentIdx, setCurrenIdx] = useState(0);
 
   const handleChange = (e: React.SyntheticEvent, newIdx: number) => {
@@ -34,7 +34,7 @@ const CurrencyTabs = (props: UserDisplayProps) => {
         <AddCurrencyDialog />
       </Tabs>
 
-      <DialogProvider>
+      <ToggleProvider>
         {props.user.currencies.map((c, idx) => (
           <TabPanel
             key={c.asset_id}
@@ -43,7 +43,7 @@ const CurrencyTabs = (props: UserDisplayProps) => {
             currency={c}
           />
         ))}
-      </DialogProvider>
+      </ToggleProvider>
     </Stack>
   );
 };
