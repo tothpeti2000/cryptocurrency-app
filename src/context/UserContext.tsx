@@ -4,7 +4,7 @@ import { User, UserCredentials } from "../interfaces/user";
 
 const useUserContextValue = () => {
   const getCurrentUserName = () => {
-    return localStorage.getItem("currentUser");
+    return sessionStorage.getItem("currentUser");
   };
 
   const getUserData = (userName: string) => {
@@ -19,7 +19,7 @@ const useUserContextValue = () => {
   };
 
   const saveUser = (user: User) => {
-    localStorage.setItem("currentUser", user.userName);
+    sessionStorage.setItem("currentUser", user.userName);
     localStorage.setItem(`userData-${user.userName}`, JSON.stringify(user));
     setUser(user);
   };
@@ -53,7 +53,7 @@ const useUserContextValue = () => {
   };
 
   const logoutUser = () => {
-    localStorage.removeItem("currentUser");
+    sessionStorage.removeItem("currentUser");
     setUser(undefined);
   };
 
