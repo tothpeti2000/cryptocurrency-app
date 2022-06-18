@@ -1,18 +1,18 @@
+import { yupResolver } from "@hookform/resolvers/yup";
 import { Button, Grid } from "@mui/material";
-import { useEffect, useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useEffect } from "react";
+import { SubmitErrorHandler, SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { useErrorContext } from "../../context/ErrorContext";
 import { useUserContext } from "../../context/UserContext";
 import { UserCredentials } from "../../interfaces/user";
 import ErrorToast from "../ErrorToast";
 import InputField from "./InputField";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useToggleContext } from "../../context/ToggleContext";
 
 const LoginForm = () => {
   const { user, loginUser, loginSchema } = useUserContext();
   const navigate = useNavigate();
-  const { open } = useToggleContext();
+  const { showError } = useErrorContext();
 
   useEffect(() => {
     // If the user is logged in already, redirect to the dashboard
@@ -24,20 +24,22 @@ const LoginForm = () => {
     control,
     formState: { errors },
   } = useForm<UserCredentials>({ resolver: yupResolver(loginSchema) });
-  const [error, setError] = useState("");
 
   const onSubmit: SubmitHandler<UserCredentials> = async (data) => {
     try {
       await loginUser(data);
       navigate("/dashboard");
     } catch (err) {
-      setError(String(err));
-      open();
+      showError(String(err));
     }
   };
 
+  const onError: SubmitErrorHandler<UserCredentials> = (error) => {
+    showError(error.userName?.message ?? "", error.password?.message ?? "");
+  };
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit, onError)}>
       <Grid
         container
         direction="column"
@@ -63,14 +65,6 @@ const LoginForm = () => {
         <Button type="submit" variant="contained">
           Sign In
         </Button>
-
-        {errors.userName?.message && (
-          <ErrorToast message={errors.userName.message} />
-        )}
-        {errors.password?.message && (
-          <ErrorToast message={errors.password.message} />
-        )}
-        {error && <ErrorToast message={error} />}
       </Grid>
     </form>
   );

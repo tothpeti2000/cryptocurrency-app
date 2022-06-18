@@ -1,10 +1,11 @@
-import { Alert, IconButton, Snackbar } from "@mui/material";
+import { Alert, Snackbar } from "@mui/material";
+import { Fragment } from "react";
+import { useErrorContext } from "../context/ErrorContext";
 import { useToggleContext } from "../context/ToggleContext";
-import { ErrorToastProps } from "../interfaces/props";
-import CloseIcon from "@mui/icons-material/Close";
 
-const ErrorToast = (props: ErrorToastProps) => {
+const ErrorToast = () => {
   const { isOpen, close } = useToggleContext();
+  const { errors } = useErrorContext();
 
   return (
     <Snackbar
@@ -14,7 +15,12 @@ const ErrorToast = (props: ErrorToastProps) => {
       onClose={close}
     >
       <Alert severity="error" variant="filled">
-        {props.message}
+        {errors.map((err, idx) => (
+          <Fragment key={idx}>
+            {err}
+            {err.trim().length > 0 && <br />}
+          </Fragment>
+        ))}
       </Alert>
     </Snackbar>
   );

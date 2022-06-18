@@ -8,11 +8,17 @@ const useUserContextValue = () => {
     userName: yup
       .string()
       .required("Please, enter your username!")
-      .min(4, "Please, enter a username with at least 4 characters!"),
+      .min(
+        4,
+        "The username should contain at least 4 characters. Did you mistype it?"
+      ),
     password: yup
       .string()
       .required("Please, enter your password!")
-      .min(8, "Please, enter a password with at least 8 characters!"),
+      .min(
+        8,
+        "The password should contain at least 8 characters. Did you mistype it?"
+      ),
   });
 
   const getCurrentUserName = () => {

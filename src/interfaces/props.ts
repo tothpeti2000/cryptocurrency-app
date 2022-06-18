@@ -25,10 +25,6 @@ export interface TabPanelProps {
   currency: Asset;
 }
 
-export interface ErrorToastProps {
-  message: string;
-}
-
 export interface AmountInputProps {
   currencyName: string;
   amount: string;
