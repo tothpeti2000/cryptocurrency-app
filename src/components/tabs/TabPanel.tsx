@@ -1,19 +1,15 @@
 import { Delete } from "@mui/icons-material";
-import { Box, Fab, Grid, Stack } from "@mui/material";
+import { Box, Fab, Stack } from "@mui/material";
 import { useDialogContext } from "../../context/DialogContext";
 import { useUserContext } from "../../context/UserContext";
 import { TabPanelProps } from "../../interfaces/props";
 import Chart from "../Chart";
 import Converter from "../converter/Converter";
+import DeleteDialog from "../dialog/DeleteDialog";
 
 const TabPanel = (props: TabPanelProps) => {
   const { children, value, index, currency, ...other } = props;
-  const { deleteCurrency } = useUserContext();
-  const {} = useDialogContext();
-
-  const handleClick = () => {
-    deleteCurrency(currency.asset_id);
-  };
+  const { open } = useDialogContext();
 
   return (
     <div
@@ -28,10 +24,11 @@ const TabPanel = (props: TabPanelProps) => {
           <Chart />
           <Converter {...currency} />
           <Box alignSelf={"flex-end"}>
-            <Fab color="error" onClick={handleClick}>
+            <Fab color="error" onClick={open}>
               <Delete />
             </Fab>
           </Box>
+          <DeleteDialog assetID={currency.asset_id} />
         </Stack>
       )}
     </div>

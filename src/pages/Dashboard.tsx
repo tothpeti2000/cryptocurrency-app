@@ -1,11 +1,12 @@
 import { Grid, Stack } from "@mui/material";
-import AddCurrencyDialog from "../components/AddCurrencyDialog";
+import AddCurrencyDialog from "../components/dialog/AddCurrencyDialog";
 import CurrencyList from "../components/currencyList/CurrencyList";
 import Header from "../components/Header";
 import Redirect from "../components/Redirect";
 import CurrencyTabs from "../components/tabs/CurrencyTabs";
 import { DialogProvider } from "../context/DialogContext";
 import { useUserContext } from "../context/UserContext";
+import DeleteDialog from "../components/dialog/DeleteDialog";
 
 const Dashboard = () => {
   const { user } = useUserContext();
@@ -18,17 +19,17 @@ const Dashboard = () => {
   return (
     <Stack spacing={2} height={"100vh"}>
       <Header user={user} />
-      <DialogProvider>
-        <Stack direction={"row"} spacing={2}>
-          <Stack flex={3}>
-            <CurrencyList user={user} />
-          </Stack>
-          <Stack flex={9}>
-            <CurrencyTabs user={user} />
-          </Stack>
-          <AddCurrencyDialog />
+
+      <Stack direction={"row"} spacing={2}>
+        <Stack flex={3}>
+          <CurrencyList user={user} />
         </Stack>
-      </DialogProvider>
+        <Stack flex={9}>
+          <DialogProvider>
+            <CurrencyTabs user={user} />
+          </DialogProvider>
+        </Stack>
+      </Stack>
     </Stack>
   );
 };

@@ -1,8 +1,9 @@
 import AddIcon from "@mui/icons-material/Add";
 import { Box, Stack, Tab, Tabs } from "@mui/material";
 import { useState } from "react";
-import { useDialogContext } from "../../context/DialogContext";
+import { DialogProvider, useDialogContext } from "../../context/DialogContext";
 import { UserDisplayProps } from "../../interfaces/props";
+import AddCurrencyDialog from "../dialog/AddCurrencyDialog";
 import TabPanel from "./TabPanel";
 
 const CurrencyTabs = (props: UserDisplayProps) => {
@@ -33,17 +34,20 @@ const CurrencyTabs = (props: UserDisplayProps) => {
           ))}
 
           <Tab label={<AddIcon />} onClick={open} />
+          <AddCurrencyDialog />
         </Tabs>
       </Box>
 
-      {props.user.currencies.map((c) => (
-        <TabPanel
-          key={c.asset_id}
-          value={value}
-          index={props.user.currencies.indexOf(c)}
-          currency={c}
-        />
-      ))}
+      <DialogProvider>
+        {props.user.currencies.map((c) => (
+          <TabPanel
+            key={c.asset_id}
+            value={value}
+            index={props.user.currencies.indexOf(c)}
+            currency={c}
+          />
+        ))}
+      </DialogProvider>
     </Stack>
   );
 };

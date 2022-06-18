@@ -38,5 +38,5 @@ export interface AmountInputProps {
 export interface DialogFrameProps {
   title: string;
   contentText: string;
-  onSubmit: () => void;
+  onSubmit: Function;
 }

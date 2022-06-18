@@ -6,11 +6,11 @@ import {
 } from "@mui/material";
 import { ChangeEventHandler, useState } from "react";
 import { useQuery } from "react-query";
-import useMockAPI from "../api/mock/useMockAPI";
-import { queryOptions } from "../api/useAPI";
-import { useUserContext } from "../context/UserContext";
-import { Asset } from "../interfaces/currency";
-import DialogFrame from "./dialog/DialogFrame";
+import useMockAPI from "../../api/mock/useMockAPI";
+import { queryOptions } from "../../api/useAPI";
+import { useUserContext } from "../../context/UserContext";
+import { Asset } from "../../interfaces/currency";
+import DialogFrame from "./DialogFrame";
 
 const AddCurrencyDialog = () => {
   const { canAddCurrency, addCurrency } = useUserContext();
