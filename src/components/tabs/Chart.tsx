@@ -10,6 +10,7 @@ import {
 } from "recharts";
 import useMockAPI from "../../api/mock/useMockAPI";
 import { queryOptions } from "../../api/rest/client";
+import useAPI from "../../api/useAPI";
 import { ChartProps } from "../../interfaces/props";
 import Spinner from "../Spinner";
 
@@ -19,7 +20,7 @@ const Chart = (props: ChartProps) => {
   const { data: chartData, isLoading } = useQuery(
     "chartData",
     () => getExchangeRates(props.assetID),
-    queryOptions
+    { ...queryOptions, refetchOnMount: true }
   );
 
   return (

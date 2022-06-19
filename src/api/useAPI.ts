@@ -14,7 +14,7 @@ const useAPI = () => {
     const intervalStart = subtractWeekFromCurrentDate();
 
     return client.get<ExchangeRate[]>(
-      `v1/exchangerate/${assetID}/USD/history?period_id=1DAY&time_start=${intervalStart}`
+      `v1/exchangerate/${assetID}/USD/history?period_id=6HRS&time_start=${intervalStart}`
     );
   };
 
