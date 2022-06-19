@@ -24,7 +24,7 @@ const CurrencyListItem = (props: CurrencyListItemProps) => {
                   variant="body2"
                   color={"text.primary"}
                 >
-                  {props.data?.price_high}
+                  {props.price_high}
                 </Typography>
               </Box>
 
@@ -35,7 +35,7 @@ const CurrencyListItem = (props: CurrencyListItemProps) => {
                   variant="body2"
                   color={"text.primary"}
                 >
-                  {props.data?.price_low}
+                  {props.price_low}
                 </Typography>
               </Box>
             </Typography>

@@ -7,6 +7,7 @@ export interface Asset {
 export interface WsData {
   price_high: number;
   price_low: number;
+  symbol_id: string;
 }
 
 export interface ExchangeRate {

@@ -1,12 +1,20 @@
 import { useEffect, useState } from "react";
+import { useErrorContext } from "../../context/ErrorContext";
 import { WsData } from "../../interfaces/currency";
-import { apiCall, wsURL } from "./client";
+import { createApiCall, wsURL } from "./client";
 
-const useWebsocket = () => {
-  const [data, setData] = useState<WsData>({ price_high: 0, price_low: 0 });
+const useWebsocket = (assetIDs: string[]) => {
+  const [data, setData] = useState<WsData>({
+    price_high: 0,
+    price_low: 0,
+    symbol_id: "",
+  });
+
+  const { showError } = useErrorContext();
 
   useEffect(() => {
     const ws = new WebSocket(wsURL);
+    const apiCall = createApiCall(assetIDs);
 
     ws.onopen = (e) => {
       console.log("WS opened");
@@ -14,13 +22,17 @@ const useWebsocket = () => {
     };
 
     ws.onmessage = (e) => {
-      const json = JSON.parse(e.data);
-      console.log(json);
-      setData(e.data as WsData);
+      const data = JSON.parse(e.data);
+
+      console.log(data);
+      setData(data);
     };
 
     ws.onerror = () => {
       console.log("WS error");
+      showError(
+        "An error occurred while trying to get live data. Refresh the page or try again later!"
+      );
     };
 
     ws.onclose = () => {
