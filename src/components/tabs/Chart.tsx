@@ -15,7 +15,7 @@ import { ChartProps } from "../../interfaces/props";
 import Spinner from "../Spinner";
 
 const Chart = (props: ChartProps) => {
-  const { getExchangeRates } = useMockAPI();
+  const { getExchangeRates } = useAPI();
 
   const { data: chartData, isLoading } = useQuery(
     "chartData",

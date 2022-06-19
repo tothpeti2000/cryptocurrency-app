@@ -84,6 +84,11 @@ export const assets: Response<Asset[]> = {
       name: "Dollar3",
       price_usd: 1,
     },
+    {
+      asset_id: "ETH",
+      name: "Eth",
+      price_usd: 1.6,
+    },
   ],
   isLoading: false,
   isError: false,

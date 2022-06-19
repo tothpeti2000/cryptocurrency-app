@@ -8,20 +8,24 @@ const CurrencyList = (props: UserDisplayProps) => {
   const assetIDs = props.user.currencies.map((c) => c.asset_id);
   const data = useWebsocket(assetIDs);
 
+  const shouldUpdate = (assetID: string) => {
+    return data.symbol_id.includes(`${assetID}_USD`);
+  };
+
   return (
     <Box {...styles.boxWithShadow}>
       <h1>Exchange Rates</h1>
-      {data.price_high}
-      {/*<List>
-        {props.user.currencies.map((c) => (
-          <CurrencyListItem
-            key={c.asset_id}
-            currencyName={c.name}
-            price_high={price_high}
-            price_low={price_low}
-          />
-        ))}
-        </List>*/}
+      {
+        <List>
+          {props.user.currencies.map((c) => (
+            <CurrencyListItem
+              key={c.asset_id}
+              currency={c}
+              wsData={shouldUpdate(c.asset_id) ? data : undefined}
+            />
+          ))}
+        </List>
+      }
     </Box>
   );
 };

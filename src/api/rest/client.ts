@@ -12,7 +12,7 @@ axios.defaults.headers.common = {
 };
 
 export const client = axios.create({
-  baseURL: "https://rest.coinapi.io",
+  baseURL: "https://rest-sandbox.coinapi.io",
 });
 
 export const get = async <T>(URL: string) => await client.get<T>(URL);

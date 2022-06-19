@@ -10,7 +10,7 @@ import useAPI from "../../api/useAPI";
 
 const AddCurrencyDialog = () => {
   const { canAddCurrency, addCurrency } = useUserContext();
-  const { getAllAssets } = useMockAPI();
+  const { getAllAssets } = useAPI();
 
   const [selectedValue, setSelectedValue] = useState("");
 

@@ -23,8 +23,6 @@ const useWebsocket = (assetIDs: string[]) => {
 
     ws.onmessage = (e) => {
       const data = JSON.parse(e.data);
-
-      console.log(data);
       setData(data);
     };
 

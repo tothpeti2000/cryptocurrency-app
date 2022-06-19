@@ -15,9 +15,8 @@ export interface InputFieldProps {
 }
 
 export interface CurrencyListItemProps {
-  currencyName: string;
-  price_high: number;
-  price_low: number;
+  currency: Asset;
+  wsData?: WsData;
 }
 
 export interface TabPanelProps {

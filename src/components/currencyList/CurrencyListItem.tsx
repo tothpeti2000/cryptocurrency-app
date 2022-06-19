@@ -7,24 +7,40 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
+import { useEffect, useState } from "react";
 import { CurrencyListItemProps } from "../../interfaces/props";
 
 const CurrencyListItem = (props: CurrencyListItemProps) => {
+  const [priceHigh, setPriceHigh] = useState(props.currency.price_usd);
+  const [priceLow, setPriceLow] = useState(props.currency.price_usd);
+
+  useEffect(() => {
+    if (props.wsData) {
+      setPriceHigh(props.wsData.price_high);
+      setPriceLow(props.wsData.price_low);
+    }
+  });
+
   return (
     <>
       <ListItem>
         <ListItemText
-          primary={props.currencyName}
+          primary={
+            <h3>
+              {props.currency.name} ({props.currency.asset_id}/USD)
+            </h3>
+          }
           secondary={
             <Typography component={"div"}>
               <Box>
                 <TrendingUpIcon />
                 <Typography
                   component="span"
-                  variant="body2"
+                  variant="body1"
                   color={"text.primary"}
+                  ml={2}
                 >
-                  {props.price_high}
+                  {priceHigh}
                 </Typography>
               </Box>
 
@@ -32,10 +48,11 @@ const CurrencyListItem = (props: CurrencyListItemProps) => {
                 <TrendingDownIcon />
                 <Typography
                   component="span"
-                  variant="body2"
+                  variant="body1"
                   color={"text.primary"}
+                  ml={2}
                 >
-                  {props.price_low}
+                  {priceLow}
                 </Typography>
               </Box>
             </Typography>
