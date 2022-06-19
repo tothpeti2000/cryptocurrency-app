@@ -7,6 +7,7 @@ const useUserContextValue = () => {
   const loginSchema = yup.object({
     userName: yup
       .string()
+      .trim()
       .required("Please, enter your username!")
       .min(
         4,
@@ -14,6 +15,7 @@ const useUserContextValue = () => {
       ),
     password: yup
       .string()
+      .trim()
       .required("Please, enter your password!")
       .min(
         8,
