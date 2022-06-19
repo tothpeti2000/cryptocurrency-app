@@ -14,3 +14,7 @@ export interface ExchangeRate {
   rate_high: number;
   rate_low: number;
 }
+
+export interface ErrorMessage {
+  message: string;
+}

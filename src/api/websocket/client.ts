@@ -1,4 +1,4 @@
-export const wsURL = "ws://ws-sandbox.coinapi.io/v1/";
+export const wsURL = "wss://ws-sandbox.coinapi.io/v1/";
 
 export const apiCall = {
   type: "hello",
@@ -6,5 +6,5 @@ export const apiCall = {
   heartbeat: false,
   subscribe_data_type: ["ohlcv"],
   subscribe_filter_period_id: ["1MIN"],
-  subscribe_filter_symbol_id: ["COINBASE_SPOT_"],
+  subscribe_filter_asset_id: ["AUD/USD"],
 };

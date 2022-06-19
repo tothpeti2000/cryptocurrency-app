@@ -20,7 +20,10 @@ const Chart = (props: ChartProps) => {
   const { data: chartData, isLoading } = useQuery(
     "chartData",
     () => getExchangeRates(props.assetID),
-    { ...queryOptions, refetchOnMount: true }
+    {
+      ...queryOptions,
+      refetchOnMount: true,
+    }
   );
 
   return (

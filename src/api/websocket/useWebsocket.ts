@@ -17,13 +17,6 @@ const useWebsocket = () => {
       const json = JSON.parse(e.data);
       console.log(json);
       setData(e.data as WsData);
-
-      try {
-        if (json.event === "data") {
-        }
-      } catch (err) {
-        console.log(err);
-      }
     };
 
     ws.onerror = () => {
