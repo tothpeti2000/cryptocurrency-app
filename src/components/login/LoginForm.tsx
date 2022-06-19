@@ -1,12 +1,12 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Button, Grid } from "@mui/material";
+import { Button, Stack } from "@mui/material";
 import { useEffect } from "react";
 import { SubmitErrorHandler, SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useErrorContext } from "../../context/ErrorContext";
 import { useUserContext } from "../../context/UserContext";
 import { UserCredentials } from "../../interfaces/user";
-import ErrorToast from "../ErrorToast";
+import { styles } from "../../styles/styles";
 import InputField from "./InputField";
 
 const LoginForm = () => {
@@ -19,11 +19,9 @@ const LoginForm = () => {
     user && navigate("/dashboard");
   });
 
-  const {
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm<UserCredentials>({ resolver: yupResolver(loginSchema) });
+  const { handleSubmit, control } = useForm<UserCredentials>({
+    resolver: yupResolver(loginSchema),
+  });
 
   const onSubmit: SubmitHandler<UserCredentials> = async (data) => {
     try {
@@ -40,14 +38,7 @@ const LoginForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit, onError)}>
-      <Grid
-        container
-        direction="column"
-        bgcolor={"white"}
-        p={5}
-        borderRadius={5}
-        boxShadow={5}
-      >
+      <Stack {...styles.boxWithShadow} p={5}>
         <InputField
           name="userName"
           control={control}
@@ -65,7 +56,7 @@ const LoginForm = () => {
         <Button type="submit" variant="contained">
           Sign In
         </Button>
-      </Grid>
+      </Stack>
     </form>
   );
 };

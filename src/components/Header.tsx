@@ -15,7 +15,7 @@ const Header = (props: UserDisplayProps) => {
   };
 
   return (
-    <Box {...styles.boxWithShadow}>
+    <Box {...styles.boxWithShadow} borderRadius={0}>
       <h1>
         Hello {props.user.userName}!
         <IconButton onClick={handleClick}>
