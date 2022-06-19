@@ -1,4 +1,5 @@
-import { Asset, OHLCV } from "../../interfaces/currency";
+import { Asset, ExchangeRate } from "../../interfaces/currency";
+import { subtractWeekFromCurrentDate } from "../utils";
 import { assets, ohlcv, Response } from "./responses";
 
 const useMockAPI = () => {
@@ -10,10 +11,12 @@ const useMockAPI = () => {
     });
   };
 
-  const getExchangeRates = () => {
-    console.log("Fetching exchange rates");
+  const getExchangeRates = (assetID: string) => {
+    console.log(
+      `Fetching ${assetID}/USD exchange rates from ${subtractWeekFromCurrentDate()}`
+    );
 
-    return new Promise<Response<OHLCV[]>>((resolve, reject) => {
+    return new Promise<Response<ExchangeRate[]>>((resolve, reject) => {
       setTimeout(() => resolve(ohlcv), 5000);
     });
   };

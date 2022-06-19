@@ -1,6 +1,5 @@
 import { Box, List } from "@mui/material";
 import useWebsocket from "../../api/websocket/useWebsocket";
-import { OHLCV } from "../../interfaces/currency";
 import { UserDisplayProps } from "../../interfaces/props";
 import { styles } from "../../styles/styles";
 import CurrencyListItem from "./CurrencyListItem";

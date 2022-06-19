@@ -18,26 +18,25 @@ const Chart = (props: ChartProps) => {
 
   const { data: chartData, isLoading } = useQuery(
     "chartData",
-    getExchangeRates,
+    () => getExchangeRates(props.assetID),
     queryOptions
   );
 
   return (
-    <Box width={600} height={300}>
-      {isLoading ? (
+    <>
+      <h2>{props.assetID}/USD exchange rates in the last week</h2>
+      {isLoading && <Spinner />}
+
+      <LineChart width={600} height={300} data={chartData?.data}>
+        <CartesianGrid strokeDasharray="5 5" />
+        <XAxis dataKey="time_period_start" />
+        <YAxis />
+        <Tooltip />
+        <Line type="monotone" dataKey="rate_high" stroke="green" />
+        <Line type="monotone" dataKey="rate_low" stroke="red" />
         <Spinner />
-      ) : (
-        <LineChart width={600} height={300} data={chartData?.data}>
-          <CartesianGrid strokeDasharray="5 5" />
-          <XAxis dataKey="time_open" />
-          <YAxis />
-          <Tooltip />
-          <Line type="monotone" dataKey="price_high" />
-          <Line type="monotone" dataKey="price_low" />
-          <Spinner />
-        </LineChart>
-      )}
-    </Box>
+      </LineChart>
+    </>
   );
 };
 

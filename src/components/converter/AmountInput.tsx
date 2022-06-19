@@ -9,7 +9,7 @@ const AmountInput = (props: AmountInputProps) => {
 
   return (
     <Box>
-      <h1>{props.currencyName}</h1>
+      <h2>{props.currencyName}</h2>
       <Input
         type="number"
         value={props.amount}

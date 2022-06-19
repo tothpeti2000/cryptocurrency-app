@@ -9,6 +9,8 @@ export interface WsData {
   price_low: number;
 }
 
-export interface OHLCV extends WsData {
+export interface ExchangeRate {
   time_period_start: string;
+  rate_high: number;
+  rate_low: number;
 }

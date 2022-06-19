@@ -6,6 +6,7 @@ import { useUserContext } from "../../context/UserContext";
 import Spinner from "../Spinner";
 import DialogFrame from "./DialogFrame";
 import { queryOptions } from "../../api/rest/client";
+import useAPI from "../../api/useAPI";
 
 const AddCurrencyDialog = () => {
   const { canAddCurrency, addCurrency } = useUserContext();
