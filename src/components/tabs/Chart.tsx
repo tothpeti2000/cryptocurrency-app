@@ -1,3 +1,5 @@
+import { Box } from "@mui/material";
+import { useQuery } from "react-query";
 import {
   CartesianGrid,
   Line,
@@ -6,29 +8,36 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import useMockAPI from "../../api/mock/useMockAPI";
+import { queryOptions } from "../../api/rest/client";
+import { ChartProps } from "../../interfaces/props";
+import Spinner from "../Spinner";
 
-const data = [
-  { name: "Page 1", uv: 400, pv: 2400, amt: 2400 },
-  { name: "Page 2", uv: 500, pv: 2400, amt: 2400 },
-  { name: "Page 3", uv: 1000, pv: 2400, amt: 2400 },
-  { name: "Page 4", uv: 735, pv: 2400, amt: 2400 },
-  { name: "Page 5", uv: 109, pv: 2400, amt: 2400 },
-  { name: "Page 6", uv: 566, pv: 2400, amt: 2400 },
-  { name: "Page 7", uv: 660, pv: 2400, amt: 2400 },
-  { name: "Page 8", uv: 1205, pv: 2400, amt: 2400 },
-  { name: "Page 9", uv: 350, pv: 2400, amt: 2400 },
-  { name: "Page 10", uv: 950, pv: 2400, amt: 2400 },
-];
+const Chart = (props: ChartProps) => {
+  const { getExchangeRates } = useMockAPI();
 
-const Chart = () => {
+  const { data: chartData, isLoading } = useQuery(
+    "chartData",
+    getExchangeRates,
+    queryOptions
+  );
+
   return (
-    <LineChart width={600} height={300} data={data}>
-      <CartesianGrid strokeDasharray="5 5" />
-      <XAxis dataKey="name" />
-      <YAxis />
-      <Tooltip />
-      <Line type="monotone" dataKey="uv" />
-    </LineChart>
+    <Box width={600} height={300}>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <LineChart width={600} height={300} data={chartData?.data}>
+          <CartesianGrid strokeDasharray="5 5" />
+          <XAxis dataKey="time_open" />
+          <YAxis />
+          <Tooltip />
+          <Line type="monotone" dataKey="price_high" />
+          <Line type="monotone" dataKey="price_low" />
+          <Spinner />
+        </LineChart>
+      )}
+    </Box>
   );
 };
 

@@ -41,3 +41,7 @@ export interface DialogFrameProps {
 export interface DeleteDialogProps {
   assetID: string;
 }
+
+export interface ChartProps {
+  assetID: string;
+}

@@ -19,14 +19,19 @@ const TabPanel = (props: TabPanelProps) => {
       {...other}
     >
       {value === index && (
-        <Stack p={3} bgcolor="white">
-          <Chart />
-          <Converter {...currency} />
+        <Stack p={3} bgcolor="white" alignItems={"center"}>
+          <Chart assetID={currency.asset_id} />
+
+          <Box alignSelf={"stretch"}>
+            <Converter {...currency} />
+          </Box>
+
           <Box alignSelf={"flex-end"}>
             <Fab color="error" onClick={open}>
               <Delete />
             </Fab>
           </Box>
+
           <DeleteDialog assetID={currency.asset_id} />
         </Stack>
       )}

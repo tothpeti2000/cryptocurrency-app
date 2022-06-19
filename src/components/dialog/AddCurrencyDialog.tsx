@@ -2,10 +2,10 @@ import { FormControl, NativeSelect } from "@mui/material";
 import { ChangeEventHandler, useState } from "react";
 import { useQuery } from "react-query";
 import useMockAPI from "../../api/mock/useMockAPI";
-import { queryOptions } from "../../api/useAPI";
 import { useUserContext } from "../../context/UserContext";
 import Spinner from "../Spinner";
 import DialogFrame from "./DialogFrame";
+import { queryOptions } from "../../api/rest/client";
 
 const AddCurrencyDialog = () => {
   const { canAddCurrency, addCurrency } = useUserContext();

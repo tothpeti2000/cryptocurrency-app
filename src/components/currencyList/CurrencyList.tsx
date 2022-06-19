@@ -1,13 +1,13 @@
 import { Box, List } from "@mui/material";
 import useWebsocket from "../../api/websocket/useWebsocket";
-import { WsData } from "../../interfaces/currency";
+import { OHLCV } from "../../interfaces/currency";
 import { UserDisplayProps } from "../../interfaces/props";
 import { styles } from "../../styles/styles";
 import CurrencyListItem from "./CurrencyListItem";
 
 const CurrencyList = (props: UserDisplayProps) => {
   //const data = useWebsocket();
-  const data: WsData = {
+  const data = {
     price_high: 0,
     price_low: 0,
   };
