@@ -1,5 +1,5 @@
 import CompareArrowsIcon from "@mui/icons-material/CompareArrows";
-import { Grid, Stack } from "@mui/material";
+import { Stack } from "@mui/material";
 import { useState } from "react";
 import { Asset } from "../../interfaces/currency";
 import AmountInput from "./AmountInput";
